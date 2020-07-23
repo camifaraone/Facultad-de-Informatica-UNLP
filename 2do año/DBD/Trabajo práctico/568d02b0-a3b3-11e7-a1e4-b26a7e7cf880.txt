@@ -1,0 +1,9 @@
+﻿Para importar la base de datos en la herramienta de álgebra relacional (http://dbis-uibk.github.io/relax/calc.htm):
+
+1- Ir al combo del margen superior izquierdo.
+2-  Seleccionar la opción “create new Dataset”
+3- Copiar el contenido del archivo “BaseParaAlgebraRelacional” en el editor.
+4- Con el botón “preview” que se encuentra por debajo de editor podrá previsualizar las tablas con su contenido.
+5- Luego de previsualizar las tablas al final de las mismas deberá seleccionar el botón  “use Group in editor”
+6- A partir de ese momento podrá correr consulta en AR y SQL sobre la DB.
+
