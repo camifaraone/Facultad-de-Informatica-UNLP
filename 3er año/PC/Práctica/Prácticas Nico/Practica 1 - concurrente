@@ -1,0 +1,265 @@
+Practica 1
+
+1)
+A) V
+B) V
+C) V
+D) F
+
+
+2)
+
+array num[40];
+int n:= 5;
+int cantN:= 0;
+
+procedure 1{
+
+cantLocal:= 0;
+
+int inicio:= 1;
+int fin:= 20;
+
+for inicio to fin do {
+	
+	if (num[i] = n) then {
+
+		cantLocal++
+
+	}
+
+<cant =+ cantLocal>
+
+}
+
+procedure 2{
+
+int inicio:= 21;
+int fin:= 40;
+
+for inicio to fin do {
+	
+	if (num[i] = n) then {
+
+		< cant + 1 >
+
+	}
+}
+
+
+3)
+
+array tenedores[5]: boolean := true;
+
+co i:= 1..5 {
+
+
+while(true){
+	
+	< await (tenedores[i] and tenedores[i+1]); tenedores[i]:= false; tenedores[imod5+1]:= false >
+	i.comer();
+	tenedores[i]:= true;
+	tenedores[mod5+1]:= true;
+
+}
+
+
+	
+
+}
+
+4)
+
+int cant = 0; int pri_ocupada = 0; int pri_vacia = 0; int buffer[N];
+
+Productor:: { 
+	while (true){
+
+		produce elemento
+	 	<await (cant < N); cant++; buffer[pri_vacia] = elemento;>
+	 	pri_vacia = (pri_vacia + 1) mod N;
+	
+	}
+}
+
+Consumidor::{ 
+	while (true){
+		
+		<await (cant > 0); cant--; elemento = buffer[pri_ocupada];
+ 		pri_ocupada = (pri_ocupada + 1) mod N;
+ 		consume elemento
+ 	
+ 	}
+}
+
+
+5)
+
+a)
+int impresora:=0;
+procedure personas[1..N] {
+
+<await (impresora=0); impresora++>
+persona.impresora(documento)
+impresora--
+}
+
+b)
+
+
+cola llegada;
+
+procedure personas[1..N] {
+
+
+<llegada.push(persona)>
+<await (colaPrimero() == i); persona.imprimir(documento); llegada.pop(persona)>
+
+}
+
+c)
+
+boolean impresora: true;
+boolean puedoImprimir: false;
+cola llegada;
+array permisos[personas]; //tamaño de cant. de personas
+
+
+procedure coordinador{
+	
+<await (impresora and (not llegada.vacia())); impresora:=false>
+persona = llegada.pop();
+permisos[persona] = true;
+	
+}
+
+
+procedure personas[1..N] {
+
+
+<llegada.push(i)>
+<await (permisos[i]); persona.imprimir(documento); impresora:= true>
+permisos[i]:= false; 
+
+}
+
+
+6)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

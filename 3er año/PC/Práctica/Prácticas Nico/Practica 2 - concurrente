@@ -1,0 +1,362 @@
+1)
+
+sem detector:1
+
+Procedure personas i[1..n]{
+	
+	P(detector)
+	delay(t)//pasa por el detector
+	V(detector)
+}
+
+1)b)
+
+sem detector:3
+
+Procedure personas i[1..n]{
+	
+	P(detector)
+	delay(t)//pasa por el detector
+	V(detector)
+}
+
+2)
+
+array bufferRecursos[5];
+sem recursos: 5;
+sem bufferOcupado:1;
+sem bufferLibre:1;
+int ocupado = 0;
+int libre = 0;
+
+process p [1..n]{
+	
+	while(true){
+
+		P(recursos); 
+		P(bufferOcupado);
+		instancia:= bufferRecursos[ocupado];
+		ocupado := (ocupado+1) mod 5;
+		//usa
+		V(bufferOcupado);
+
+		P(bufferLibre);
+		bufferRecursos[libre] := instancia;
+		libre := (libre+1) mod5;
+		V(bufferLibre);
+		V(recurso);
+
+	}
+}
+
+
+
+
+3)
+
+Var
+sem: semaphoro := 6;
+alta: semaphoro := 4;
+baja: semaphoro := 5;
+
+Process Usuario-Alta [I:1..M] {
+	P (sem);
+	P (alta);
+ 		//usa la BD
+	V(alta);
+	V(sem);
+
+}
+
+Process Usuario-Baja [I:1..N]{
+	P (sem);
+	P (baja);
+		//usa la BD
+ 	V(baja);
+ 	V(sem);
+ }
+
+
+4)
+
+sem entregarTarea:0;
+sem esperandoTarea[40]:0;
+queue alumnosEnCorrecion
+array notas[40];
+sem mutex:1;
+
+
+process maestra {
+
+	for int i = 1 to 40 {
+		V(esperandoTarea[i]); //de muchos a 1
+	}
+
+	while(true){
+		P(entregarTarea);
+		P(mutex);
+		alumnosEnCorrecion.desencolar(i);
+		V(mutex);
+		notas[i] := asignarNota()
+		V(esperarCorrecion[i]); //de muchos a 1
+
+	}
+}
+
+
+process alumnos [i:1..40]{
+	
+	P(esperandoTarea[i]);
+	delay(t) //realizar tarea;
+	alumnosEnCorrecion.encolar(i);
+	V(entregarTarea); //si es de muchos a 1 esta bien un unico V;
+
+	P(esperarCorrecion[i]);
+	while(notas[i] = tieneUnError()){
+		delay(t) //corregir errores
+		P(mutex);
+		alumnosEnCorrecion.encolar(i);
+		V(mutex);
+		V(entregarTarea)
+		P(esperarCorrecion[i]);
+	}
+}
+
+
+5. 
+
+sem verificarSiEstaLibre:1;
+sem esperarImpresora[N] = 1;
+sem mutex=1;
+queue colaPersonas;
+boolean libre;
+
+process personas [i:1..n] {
+	
+	while(true){
+	
+		P(verificarSiEstaLibre);
+		if (libre){
+			
+			libre := false;
+			V(verificarSiEstaLibre);
+
+		}	else {
+			P(mutex);
+			colaPersonas.encolar(i);
+			V(mutex);
+			V(verificarSiEstaLibre);
+			P(esperarImpresora[i])
+
+		}
+		//usar
+		P(verificarSiEstaLibre)
+		if(colaPersonas.tamaño() > 0){
+			persona := colaPersonas.desencolar();
+			V(esperarImpresora[persona]);
+
+		} else {
+				libre:= true;
+		}
+		V(verificarSiEstaLibre)
+	}
+
+
+
+5c)
+
+sem mutex:1;
+sem despertarCoordinador:0;
+sem coordinadorLibre:1;
+
+
+process coordinador{
+	
+	while(true){
+		P(despertarCoordinador);
+		P(mutex);
+		persona := cola.desencolar();
+		V(mutex);
+		V(esperandoAcceso[persona]);
+		P(esperarPersona);
+	}
+
+
+process persona [i:1..n]{
+	
+	while(true){
+		P(mutex);
+			cola.encolar(i);
+		V(mutex);
+		V(despertarCoordinador);
+		P(esperandoAcceso[i]);
+		imprimir(documento);
+		V(esperarPersona);
+	}
+
+
+}
+
+6)
+
+sem agarrarTarea = 1;
+sem esperarAlumnos[i] = 1;
+int grupos[10] = 0;
+
+process profesor {
+
+	while (true){
+		if(cola.tamaño() > 0){
+			P(mutex);
+			alumno = cola.desencolar();
+			v(mutex);
+			//corregir
+			grupos[i.tarea()]++
+			V(esperarCorreccion[i]);
+		}
+	}
+	
+
+}
+
+process alumnos [i: 1..50]{
+	
+while(true){
+	
+	P(agarrarTarea)
+	alumnosConTarea++
+	if (alumnosConTarea < 50) {
+
+		V(agarrarTarea);
+		P(esperarAlumnos[i]);
+
+	} else {
+
+		V(agarrarTarea);
+		V(esperarAlumnos[i]);
+		delay(t); //hacer tarea
+		P(mutex);
+		cola.encolar(i);
+		V(mutex);
+		P(esperarCorrecion[i]);
+	}
+
+
+	// esperar al grupo y dar el puntaje
+	P(esperarGrupo[i]);
+
+}
+
+}
+
+
+7)
+
+
+
+process empleados[i: 1..E] {
+	
+	P(llegoEmpleado);
+	cantidadEmpleados++;
+	if (cantidadEmpleados < E) {
+
+		V(llegoEmpleado);
+		P(esperarEmpleados);
+
+	} else {
+
+		V(llegoEmpleado);
+		V(esperarEmpleados);
+
+	}
+
+	while (hayaTareas > 0) {
+		P(tomarTarea);
+		hayaTareas--
+		V(tomarTarea);
+		delay(t) //realizarTarea
+
+	} 
+}
+
+
+
+8)
+
+process carpinteros [i:1..4]{
+	
+
+
+}
+
+process vidriero {
+	
+
+}
+
+process armador [j:1..2]{
+	
+
+
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

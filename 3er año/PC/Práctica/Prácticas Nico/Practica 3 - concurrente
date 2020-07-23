@@ -1,0 +1,462 @@
+Practica 3 concurrente
+
+1)
+
+Monitor BaseDeDatos {
+	cond espera;
+	int cant=0;
+
+	procedure usarBD {
+		
+		while(cant == 5) wait(espera) //preguntar while o if
+		
+		cant++;
+
+	}
+	procedure liberarBD {
+		
+		Signal(espera);
+		cant--;
+
+	}
+
+}
+
+process persona [i:1..5]{
+	BaseDeDatos.usarBD;
+	//usa base de datos
+	BaseDeDatos.liberarBD;	
+}
+
+2)
+
+
+
+
+4) En un laboratorio de genética se debe administrar el uso de una máquina secuenciadora
+de ADN. Esta máquina se puede utilizar por una única persona a la vez. Existen 100
+personas en el laboratorio que utilizan repetidamente esta máquina para sus estudios,
+para esto cada persona pide permiso para usarla, y cuando termina el análisis avisa que
+termino. Cuando la máquina está libre se le debe adjudicar a aquella persona cuyo
+pedido tiene mayor prioridad (valor numérico entre 0 y 100).
+
+
+monitor maquinaSecuenciadora {
+	
+	cond personas[100];
+	queue colaPersonas;
+	boolean ocupada = false;
+
+	procedure usarMaquina (persona) {
+
+
+		if(ocupada){
+			colaPersonas.encolarConPrioridad(persona);
+			wait(personas[persona]);
+		}
+		else{
+
+			ocupada = true; //preguntar si es un else (por el signal and continue)
+		}
+
+	}
+
+	procedure liberarMaquina (){
+
+		if(!colaPersonas.isEmpty){
+			persona := colaPersonas.desencolarConPrioridad()
+			signal(persona);
+		}
+		else {
+
+				ocupada := false;
+
+		}
+	}
+}
+
+int cant = 0;
+
+process personas [i:0..100]{
+
+
+	while (true){
+	
+
+
+
+	} 
+
+
+}
+
+5)
+
+monitor banco {
+
+	cond personas [N];
+	cond esperarCajero;
+	queue colaPersonas;
+	boolean hayCajeroDisponible = true;
+	array<Personas> arregloPersonas[N];
+
+	procedure llegoAlBanco(idPersona, out idCajero) {
+
+			colaPersonas.encolar(persona);
+			signal (esperaCajero);   // por las dudas para esperar un cajero
+			wait (personas[idPersona]);
+			idCajero = arregloPersonas[idPersona];
+
+	}
+
+	procedure despertarPersona(cajeroId){
+
+		while (colaPersonas.isEmpty()) wait(esperaCajero)
+		idPersona = colaPersonas.desencolar();
+		arregloPersonas[idPersona] = cajeroId;
+		signal(personas[idPersona]);
+	}
+}
+
+monitor atencion [i : 1 .. 2] {
+
+	bool noHayPersona = true
+    cond persona
+    cond empleado
+    cond sellarBoleta
+    boletaActual;
+    empleadoOcupado:= false
+
+    procedure atenderPersona() {
+        
+        while(noHayPersona) wait(empleado);
+        //hacer boleta
+        signal(sellarBoleta);
+    }
+
+
+    procedure presentarBoleta(var boletaSellada, boleta ) {
+
+    	noHayPersona:= false;
+    	boletaActual = boleta;
+        signal(empleado)
+        wait(sellarBoleta)
+        }
+
+    
+    }
+
+process personas [i: 1..N] {
+	
+	int idCajero = 0;
+
+	banco.llegoAlBanco(i, idCajero);
+	atencion[idCajero].presentarBoleta(boletaSellada, boleta);
+
+
+
+}
+
+process cajero [i: 1 .. 2] {
+
+	while(true){
+			banco.despertarPersona(i);
+			atencion.atenderPersona();
+
+	}
+}
+
+
+6)
+
+
+Monitor puente {
+
+	cond autos[N];
+	queue	colaAutos;
+	Integer pesoAutos = 0;
+	Integer pesoMax = 50000;
+
+	
+	procedure pasarPorPuente( auto ){
+
+		pesoAutos:= pesoAutos + auto.peso();
+		if( pesoAutos > pesoMax ) {
+
+		}
+	}
+
+	procedure salirDelPuente(){
+
+
+	}
+
+
+}
+
+
+process vehiculos [i: 1 .. N] {
+	
+	
+}
+
+
+
+7)
+
+monitor videoConferencia {
+
+cond personas[N];
+queue_prioridad colaPersonas; //el push y el pop se hacen con prioridad
+boolean ocupado=false;
+	
+
+procedure usarMonitor(idPersona){
+	if(!ocupado){
+
+		colaPersonas.encolar(personas[idPersona])
+		wait(personas[idPersona]);
+
+
+	} else {
+
+		ocupado = true;
+
+	}
+
+
+}
+
+procedure dejarMonitor(){
+	
+	int persId;
+	
+	if(!colaPersonas.isEmpty()){
+
+		persId = colaPersonas.desencolar();
+		signal(personas[persId]);
+
+	} else {
+
+		ocupado = false;
+
+	}
+}
+
+procedure aumentarPrioridad () {
+	
+	colaPersonas.aumentarPrioridad(1); //se aumenta la prioridad en 1;
+	
+
+
+}
+
+}
+
+
+process persona [i: 1..N] {
+	
+	videoConferencia.usarMonitor(i);
+	//usarVideoConferencia
+	videoConferencia.dejarMonitor();
+
+}
+
+monitor para administrador ????
+
+process administrador {
+	while(true){
+		delay(t) //3 horas
+		videoConferencia.aumentarPrioridad()
+	}
+
+}
+
+
+8)
+
+Monitor jtp {
+	
+	cond alumnos[50];
+	cond esperarAlumnos;
+	queue colaAlumnos;
+	int cantAlumnos = 0;
+	array alumnos [50]
+	cond darTarea[50];
+
+	procedure entregarNumero(out tarea){
+
+		cantAlumnos++;
+		while(cantAlumnos < 50) wait(esperarAlumnos);
+		signal_all(esperarAlumnos);
+		tarea = DarTarea();
+
+	}
+
+	procedure entregarTareaAlumno(tarea){
+
+	}
+		
+
+
+}
+
+process alumnos [i: 1..50]{
+jtp.entregarNumero(tarea);
+//hacer tarea
+jtp.entregarTareaAlumno(tarea);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
