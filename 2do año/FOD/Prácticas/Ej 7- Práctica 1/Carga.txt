@@ -1,0 +1,6 @@
+Medicamento 1
+20161015 100 Presentacion 1
+Medicamento 2
+20170419 200 Presentacion 2
+Medicamento 3
+20160622 300 Presentacion 3

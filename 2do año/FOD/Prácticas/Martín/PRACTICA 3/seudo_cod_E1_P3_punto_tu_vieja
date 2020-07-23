@@ -1,0 +1,29 @@
+
+mien not EOF   AND (n llegue al arch)
+	read (arch)
+if not EOF	
+	seek (arch, filepos -1)
+	if file pos == file size -1
+		borramos el archivo directamente
+	else
+		aux := file pos
+		seek (arch, file size -1)
+		read (arch, reg)
+		seek (arch, aux)
+		write (arch, reg)
+		seek (arch, file size -1)
+		[
+		
+		//truncalo como  puedas
+		
+		]
+	
+	
+	
+else
+	no se encontro
+	
+	
+	
+	
+	

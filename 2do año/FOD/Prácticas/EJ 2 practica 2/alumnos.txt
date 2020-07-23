@@ -1,0 +1,10 @@
+1 agustin
+1 9 cartasso
+2 ezequiel
+1 10 manzur
+3 cami
+3 6 faraone
+4 agustin
+4 0 car
+5 lola
+0 9 rodriguez
