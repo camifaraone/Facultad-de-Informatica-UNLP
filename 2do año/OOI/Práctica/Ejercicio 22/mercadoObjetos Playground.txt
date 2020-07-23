@@ -1,0 +1,13 @@
+|mercadoObjetos vendedor producto cliente pedido mapa|
+
+mapa:= Mapa new. mapa distanciaEntre: 100 y: 50.
+
+mercadoObjetos:= MercadoObjetos  new.
+vendedor:= mercadoObjetos registrarUnVendedor: 'Todo Lindo' direccion: 'Calle 16, Nº90, La Plata'.
+cliente:= mercadoObjetos registrarUnCliente: 'Juan' direccion: 'Mitre 3587'.
+producto:= mercadoObjetos ponerProductoALaVenta: 'Iphone' descripcion: 'Celular'  precio:10000  cantidadStock:40  vendedor: vendedor.
+
+pedido:= mercadoObjetos registrarUnPedido: cliente producto: producto pago: (Efectivo new) envio:(Domicilio new)  cantidad: 2.
+mercadoObjetos calcularCostoPedido: pedido.
+
+producto verMiStock 

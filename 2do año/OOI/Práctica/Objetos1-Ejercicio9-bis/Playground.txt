@@ -1,0 +1,21 @@
+|distri usu usu2 usu3 consumo1|
+"creo plataforma"
+distri:= Distribuidora new.
+distri precioKWh: 100.
+
+"registro proveedor netflix"
+usu:= Usuario domicilio: 123 nombre: 'Juan'.
+usu2:= Usuario domicilio: 456 nombre: 'Pablo'.
+usu3:= Usuario domicilio: 789 nombre: 'Andres'.
+distri agregarUsuario:usu.
+distri agregarUsuario:usu2.
+distri agregarUsuario:usu3.
+
+consumo1 := Consumo consumoEnergiaActiva: 1 consumoEnergiaReactiva: 3.
+
+usu agregarConsumo: consumo1.
+usu2 agregarConsumo: consumo1.
+usu3 agregarConsumo: consumo1.
+
+usu facturarEnBaseA: 100.
+distri facturar 

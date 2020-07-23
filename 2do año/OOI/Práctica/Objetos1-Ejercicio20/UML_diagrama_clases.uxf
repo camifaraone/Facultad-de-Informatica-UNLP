@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>995</x>
+      <y>685</y>
+      <w>500</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>/Persona/
+--
+#numero: String
+#nombre: String
+#direccion: String
+--
++initializeConNombreDireccion(unNumero:String, unaDireccion:String)
++nombre(unNombre: String)
++direccion(unaDireccion: String)
++numero(unNumero: String)
++nombre(): String
++direccion(): String
++numero(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1030</x>
+      <y>150</y>
+      <w>500</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>SistemaTelefonico
+--
+-nombreEmpresa: String
+-numerosDisponibles: String [*]
+--
++agregarNumero(unNumero: String)
++altaPersonaFisicaConDireccionDni(unNombre: String, unaDireccion: String, unDni: String): PersonaFisica
++altaPersonaJuridicaConDireccionCuitTipo(unNombre: String, unaDireccion: String, unCuit: String, unTipo:String): PersonaJuridica
++facturarFechaInicioFechaFin(unCliente: Cliente, unaFechaInicio: Date, unaFechaFin:Date): Factura
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>430</y>
+      <w>210</w>
+      <h>265</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=-clientes 0..n</panel_attributes>
+    <additional_attributes>320.0;510.0;320.0;230.0;10.0;230.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2595</x>
+      <y>165</y>
+      <w>500</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>/RegistroLlamada/
+--
+#fechaYHoraComienzo: DateTime
+#duracionEnMinutos: Integer
+#numeroLlama: String
+#numeroRecibe: String
+--
++initializeConFechaYHoraComienzoDuracionLlamaRecibe(aDateTime: DateTime, minutos: Integer, numeroLlama: String, numeroRecibe:String)
+/+costo()/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>695</x>
+      <y>1175</y>
+      <w>500</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>PersonaFisica
+--
+-numero: String
+-nombre: String
+-direccion: String
+-dni: String
+--
++initializeConDni(unDni: String)
++nombre(unNombre: String)
++direccion(unaDireccion: String)
++numero(unNumero: String)
++dni(unDni: String)
++nombre(): String
++direccion(): String
++numero(): String
++dni(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1295</x>
+      <y>1175</y>
+      <w>500</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>PersonaJuridica
+--
+-numero: String
+-nombre: String
+-direccion: String
+-cuit: String
+-tipo: String
+--
++initializeConCuitTipo(unCuit: String, unTipo: String)
++nombre(unNombre: String)
++direccion(unaDireccion: String)
++numero(unNumero: String)
++cuit(unCuit: String)
++tipo(unTipo: String)
++nombre(): String
++direccion(): String
++numero(): String
++cuit(): String
++tipo(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1025</x>
+      <y>965</y>
+      <w>220</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>420.0;10.0;420.0;240.0;10.0;240.0;10.0;420.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1240</x>
+      <y>965</y>
+      <w>210</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0;400.0;240.0;400.0;420.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1490</x>
+      <y>190</y>
+      <w>1115</w>
+      <h>535</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=-llamadas 0..n</panel_attributes>
+    <additional_attributes>2210.0;10.0;420.0;10.0;420.0;1050.0;10.0;1050.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1890</x>
+      <y>685</y>
+      <w>585</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>RegistroLlamadaLocal
+--
+
+--
+_+conFechaYHoraComienzoDuracionLlamaRecibe(aDateTime: DateTime, minutos: Integer, numeroLlama: String, numeroRecibe:String)_
++costo()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2575</x>
+      <y>690</y>
+      <w>525</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>RegistroLlamadaInterurbana
+--
+-distanciaEnKm: Integer
+--
+_+conFechaYHoraComienzoDuracionLlamaRecibeDistancia(aDateTime: DateTime, minutos: Integer, numeroLlama: String, numeroRecibe:String, unaDistancia: Integer)_
++costo()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3285</x>
+      <y>695</y>
+      <w>635</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>RegistroLlamadaInternacional
+--
+-paisOrigen: String
+-paisDestino: String
+--
+_+conFechaYHoraComienzoDuracionLlamaRecibePaisOrigenPaisDestino(aDateTime: DateTime, minutos: Integer, numeroLlama: String, numeroRecibe:String, unPaisOrigen: String, unPaisDestino: String)_
++costo()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2170</x>
+      <y>445</y>
+      <w>485</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>950.0;10.0;950.0;240.0;10.0;240.0;10.0;480.0;10.0;300.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2855</x>
+      <y>445</y>
+      <w>15</w>
+      <h>255</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;490.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3030</x>
+      <y>445</y>
+      <w>565</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0;1110.0;240.0;1110.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>415</x>
+      <y>150</y>
+      <w>500</w>
+      <h>285</h>
+    </coordinates>
+    <panel_attributes>Factura
+--
+-cliente: String
+-fechaFacturacion: Date
+-fechaInicioPeriodo: Date
+-fechaFinPeriodo: Date
+-monto: Double
+--
++initializeConClienteFechaFacturacionFechaInicioFechaFinMonto(unNombre: String, unaFechaFacturacion: Date, unaFechaInicio: Date, unaFechaFin: Date, unMonto: Double)
++cliente(): String
++fechaFacturacion(): String
++fechaInicio(): String
++fechaFin(): String
++monto(): Double
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
