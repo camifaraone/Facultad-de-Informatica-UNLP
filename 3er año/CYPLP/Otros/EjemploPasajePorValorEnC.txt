@@ -1,0 +1,16 @@
+Ejemplo de pasaje por valor en C:
+
+#include <stdio.h>
+void incrementarPorValor(int valor);
+int main(){
+int a=5;
+incrementarPorValor(a);
+printf("Variable a luego de llamar a la función: %i",a); //Imprime a:5; notamos que pese a que se      llamó a la función incrementarPorValor, el resultado de "a" no se modificó.
+printf("\n");
+return 0;
+}
+void incrementarPorValor(int valor){
+valor=valor +1;
+ printf("Resultado dentro de la función: %i",valor);
+ printf("\n");
+}

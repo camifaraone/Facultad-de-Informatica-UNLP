@@ -1,0 +1,13 @@
+Ejemplo de pasaje por valor constante: 
+
+#include <stdio.h>
+int Max( const int x, const int y ) 
+{if ( x > y ) return x ; else return y ;}
+ int main(){
+   int a=5;
+   int b=2;
+   int res=Max(a,b);
+    printf("El máximo entre a=5 y b=2 es: %i",res); 
+printf("\n");
+return 0;
+}

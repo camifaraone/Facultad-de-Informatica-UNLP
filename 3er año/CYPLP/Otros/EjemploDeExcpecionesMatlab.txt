@@ -1,0 +1,12 @@
+Ejemplo de excepciones en Matlab
+
+A= input (‘matriz 1: ‘);
+B= input (‘matriz 2: ‘);
+Try
+        C = A*B
+        Disp (C)
+        Break
+Catch
+        C = A.*B
+End;
+Disp (C)

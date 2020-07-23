@@ -1,0 +1,16 @@
+Ejemplo de pasaje por referencia a través de punteros:
+
+#include <stdio.h>
+void sumarXreferencia(int a,int b,int *resultado);
+int main(){
+int a=5;
+int b=2;
+int resultado=0;
+sumarXreferencia(a,b,&resultado);
+printf("Resultado luego de llamar a la función: %i",resultado); //Imprime Resultado:7; notamos que al llamar a la función,los cambios se ven reflejados.
+printf("\n");
+return 0;
+}
+void sumarXreferencia(int a,int b,int *resultado){
+*resultado = a + b;
+}

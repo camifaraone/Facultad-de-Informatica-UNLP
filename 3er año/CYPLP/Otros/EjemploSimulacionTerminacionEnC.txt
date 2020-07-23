@@ -1,0 +1,16 @@
+Ejemplo de simulación de manejo de excepciones por terminación en C
+
+#include  <stdio.h> 
+#include  <setjmp.h>
+ jmp_buf jumper;
+ int ControladorDivisor(int a, int b)
+  {if (b == 0) // no se puede dividir por 0
+   longjmp(jumper, -3);
+   return a / b; }
+  void main(void){
+      if (setjmp(jumper) == 0)
+      { int resultado = ControladorDivisor(7, 0);
+         printf("Sigo trabajando"); // Seguir trabajando con resultado}
+      else
+         printf("Ocurrió un error:división por cero no definida\n");
+   }
