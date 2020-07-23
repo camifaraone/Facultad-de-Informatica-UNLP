@@ -1,0 +1,42 @@
+Turno: Mañana
+Integrantes: Faraone Negri Camila 12549/2, Gauto Marianela 12530/9, Riccio Evelyn 12692/8
+Parte práctica
+
+Parte a:
+
+A B C D E F
+
+Parte b:
+
+	public char letraMasAlta(ArbolGeneral<T> arbol){
+		
+		ColaGenerica<ArbolGeneral<T>> cola= new ColaGenerica<ArbolGeneral<T>>();
+		cola.encolar(arbol);
+		char max= this.getDatoRaiz();
+		cola.encolar(null);
+		ArbolGeneral<T> aux;
+		ListaGenerica<ArbolGeneral<T>> hijos;
+		while (!cola.esVacia()){
+			aux= cola.desencolar();
+			if (aux. getDatoRaiz() > max){
+				max:=aux.getDatoRaiz();
+			}
+			if (aux != null){
+				
+				hijos= aux.getHijos();
+				hijos.comenzar();
+				while(!hijos.fin()){
+					cola.encolar(hijos.proximo());
+				}
+			}else{ 				
+				if (!cola.esVacia()){
+					cola.encolar(null);
+				}
+				
+			}
+		}
+		return max;
+	}
+
+
+

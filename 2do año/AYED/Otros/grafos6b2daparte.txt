@@ -1,0 +1,18 @@
+
+camino // camino a devolver
+caminoActual // camino actual
+  
+
+//vaciar la lista de camino
+camino.comenzar()
+for (int i=1; i<= camino.tamano(); i++ ) {
+  ca
+}  
+
+//reemplazar contenido de camino con elementos de la lista actual
+caminoActual.comenzar()
+while (!caminoActual.fin()) {
+  elem = caminoActual.proximo();
+  camino.agregarAlfinal(elem);
+}
+  

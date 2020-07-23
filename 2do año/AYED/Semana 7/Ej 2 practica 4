@@ -1,0 +1,48 @@
+//Ejercicio 2 Arboles Generales
+https://codeshare.io/5zvYXb
+
+  a) //Fila 1a) 
+    ¿Cuál/es es/son el/los recorrido/s que conoce para recorrer en profundidad un árbol general?
+Explique brevemente.
+
+La diferencia en el recorrido es que en vez de tener hijo izquierdo e hijo derecho ahora tiene una lista,
+donde se puede tener 0,1 o mas hijos
+    
+>Preorden
+	Se procesa primero la raíz y luego sus hijos, desde el primer hijo hasta el ultimo.
+>Inorden
+>Postorden
+
+  
+  b) //Fila2
+  ¿Cuál es el recorrido que conoce para recorrer por niveles un árbol general? Explique
+brevemente.
+  
+  El recorrido por niveles se basa recorrer el arbol utilizando una cola como estructura auxiliar
+  de forma que despues de encolar el primer elemento el procedimiento iterativo sería: 
+	- desencolar el primer elemento en la cola. 
+	- imprimir el dato de ese elemento.
+	- por ultimo encolar todos sus hijos.
+	Así hasta que la cola se vacíe. 
+  '[
+  C)  //Fila 3
+    c) ¿Si clasificamos los recorridos de árboles generales entre recorridos recursivos y recorridos
+iterativos, de los recorridos que conoce, cuál corresponde a cada una de estas
+clasificaciones?
+    
+recursivos:
+	pre-orden
+	en-orden
+	post-orden
+iterativos:
+	por niveles
+  
+  d) ¿Existe alguna diferencia entre los recorridos pre-orden, post-orden, en-orden para recorrer
+los árboles generales respecto de los árboles binarios? Justifique su respuesta. Idem c;
+      
+  
+  E)  //Fila 4
+    no.
+  
+  
+  F)  //Fila 4
