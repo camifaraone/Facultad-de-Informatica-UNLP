@@ -1,0 +1,38 @@
+|peli1 peli2 peli3 peli4 peli5 peli6 deco|
+
+"Instancia de un decodificador"
+deco := Decodificador new.
+
+"Agrego las peliculas "
+peli1 := Pelicula nuevaCon: 'Thor' puntaje: 7.9 anio:2007. 
+peli2 := Pelicula nuevaCon: 'Capitan America' puntaje: 7.8 anio:2016. 
+peli3 := Pelicula nuevaCon: 'Iron man' puntaje: 7.9 anio:2010. 
+peli4 := Pelicula nuevaCon: 'Dunkirk' puntaje: 7.9 anio:2017. 
+peli5 := Pelicula nuevaCon: 'Rocky' puntaje: 8.1 anio: 1976. 
+peli6 := Pelicula nuevaCon: 'Rambo' puntaje: 7.8 anio: 1979. 
+
+"Agregamos las peliculas similares de cada pelicula"
+peli1 agregarSimilitudes: peli2; agregarSimilitudes: peli3.
+peli2 agregarSimilitudes: peli1; agregarSimilitudes: peli3.
+peli3 agregarSimilitudes: peli1; agregarSimilitudes: peli2.
+peli5 agregarSimilitudes: peli6.
+peli6 agregarSimilitudes: peli5.
+
+"Agregamos las peliculas a la grilla del decodificador"
+deco agregarPeliculaAGrilla: peli1; agregarPeliculaAGrilla: peli2; agregarPeliculaAGrilla: peli3;
+agregarPeliculaAGrilla: peli4; agregarPeliculaAGrilla: peli5; agregarPeliculaAGrilla: peli6.
+
+"Marco las peliculas como reproducidas"
+deco agregarPeliculaAReproducidas: peli1; agregarPeliculaAReproducidas: peli5.
+
+"Configuramos el decodificador para sugerir por similaridad"
+deco configuracion: (Similaridad  new decodificador: deco).
+
+"Solicito al decodificador las sugerencias"
+deco configuracion criterioPelicula .
+
+"Configuro el decodificador para sugerir por puntaje"
+deco cambiarConfiguracion: (Puntaje new decodificador: deco).
+
+"Solicitamos las sugerencias"
+deco configuracion criterioPelicula.

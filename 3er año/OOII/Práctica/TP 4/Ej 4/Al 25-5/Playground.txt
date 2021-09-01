@@ -1,0 +1,34 @@
+|peli1 peli2 peli3 peli4 peli5 peli6 deco|
+
+deco := Decodificador new.
+deco configuracion: (Novedad new decodificador: deco).
+
+peli1 := Pelicula nuevaCon: 'Thor' puntaje: 7.9 anio:2007. 
+peli2 := Pelicula nuevaCon: 'Capitan America' puntaje: 7.8 anio:2016. 
+peli3 := Pelicula nuevaCon: 'Iron man' puntaje: 7.9 anio:2010. 
+peli4 := Pelicula nuevaCon: 'Dunkirk' puntaje: 7.9 anio:2017. 
+peli5 := Pelicula nuevaCon: 'Rocky' puntaje: 8.1 anio: 1976. 
+peli6 := Pelicula nuevaCon: 'Rambo' puntaje: 7.8 anio: 1979. 
+
+peli1 agregarSimilitudes: peli2;
+	 	agregarSimilitudes: peli3.
+peli2 agregarSimilitudes: peli1;
+		agregarSimilitudes: peli3.
+peli3 agregarSimilitudes: peli1;
+	agregarSimilitudes: peli2.
+peli5 agregarSimilitudes: peli6.
+peli6 agregarSimilitudes: peli5.
+
+deco agregarPeliculaAGrilla: peli1.
+deco agregarPeliculaAGrilla: peli2.
+deco agregarPeliculaAGrilla: peli3.
+deco agregarPeliculaAGrilla: peli4.
+deco agregarPeliculaAGrilla: peli5.
+deco agregarPeliculaAGrilla: peli6.
+
+deco agregarPeliculaAReproducidas: peli1; agregarPeliculaAReproducidas: peli5.
+
+deco configuracion criterioPelicula .
+
+deco cambiarConfiguracion: (Puntaje new decodificador: deco).
+deco configuracion criterioPelicula.
